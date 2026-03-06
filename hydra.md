@@ -11,6 +11,7 @@ description: Very useful brute-forcing tool for network services.
 * Usage depends on what ports are open.&#x20;
 * Can adjust speed depending on parallel threads with the "-t" flag for all types of scan. Default is "-t 16". The higher the number of threads, the higher the speed but more load on the target.&#x20;
 * Syntax is very similar across the different protocols being targeted.&#x20;
+* Remember, lockout is a real possibility. Limit lockout risk through a lower number of threads, add delays between attempts and distribute the brute force across multiple users to avoid targeting one account and raising suspicion.&#x20;
 
 ***
 
@@ -43,8 +44,12 @@ root@kali:~# hydra -l admin -P wordlist.txt ssh://[Target IP] -v -f -o results.t
 * Brute forcing FTP logon:
 
 ```
-root@kali:~# hydra -l admin -P wordlist.txt ftp://[Target IP]
+root@kali:~# hydra -l admin -P wordlist.txt ftp://[Target IP] -w 10
 ```
+
+-> "-w 10" means wait 10 seconds between attempts. Useful for making it seem less suspicious and avoid being locked out.
+
+
 
 * Brute forcing RDP (Remote Desktop Protocol - Windows) logon:
 
