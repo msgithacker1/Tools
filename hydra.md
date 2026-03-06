@@ -22,7 +22,7 @@ description: Very useful brute-forcing tool for network services.
 * Brute forcing SSH logon:
 
 ```
-root@kali:~# hydra -l admin -P wordlist.txt ssh://[Target IP] -v -f -o results.txt
+root@kali:~# hydra -l admin -P wordlist.txt ssh://[Target IP] -w 10 -v -f -o results.txt
 ```
 
 -> "-l" signifies only one user to test. Uppercase "-L" would mean a list of users in a .txt file to test.
@@ -30,6 +30,8 @@ root@kali:~# hydra -l admin -P wordlist.txt ssh://[Target IP] -v -f -o results.t
 -> "-P" signifies a list of passwords to test. Lowercase "-p" would mean test a single password.
 
 -> You can use this to modify usage for password spraying also.&#x20;
+
+-> "-w 10" means wait 10 seconds between attempts. Useful for making it seem less suspicious and avoid being locked out.
 
 -> "-v" means verbose output. Replace with "-V" for even more verbose output.&#x20;
 
@@ -39,15 +41,11 @@ root@kali:~# hydra -l admin -P wordlist.txt ssh://[Target IP] -v -f -o results.t
 
 
 
-
-
 * Brute forcing FTP logon:
 
 ```
 root@kali:~# hydra -l admin -P wordlist.txt ftp://[Target IP] -w 10
 ```
-
--> "-w 10" means wait 10 seconds between attempts. Useful for making it seem less suspicious and avoid being locked out.
 
 
 
